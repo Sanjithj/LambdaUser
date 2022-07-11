@@ -1,198 +1,60 @@
 package com.bridgelabz;
 
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class User {
-	public static void firstNameValidation(String name) {
-		String firstNameRegex="^[A-Z]{1}[a-z]{2}$";
+
+	public static boolean firstNameValidation(String name) throws CustomException{
+		String firstNameRegex="^[A-Z]{1}[a-z]{2,}$";
 		Pattern pattern=Pattern.compile(firstNameRegex);
 		Matcher matcher=pattern.matcher(name);
-		if(matcher.find()) {
-			System.out.println("its valid");
+		if(matcher.find()==false) {
+			throw new CustomException ("please enter correct first name");
 		}
-		else {
-			System.out.println("its not valid");
-		}
-		
+		return matcher.find(); 
 	}
-public static void lastNameValidation(String name) {
-	String lastNameRegex="^[A-Z]{1}[a-z]{2}$";
+
+public static boolean lastNameValidation(String name) throws  CustomException {
+	String lastNameRegex="^[A-Z]{1}[a-z]{2,}$";
 	Pattern pattern=Pattern.compile(lastNameRegex);
 	Matcher matcher=pattern.matcher(name);
-	if(matcher.find()) {
-		System.out.println("its valid");
+	if(matcher.find()==false) {
+		throw new CustomException("please enter correct last name");
 	}
-	else {
-		System.out.println("its not valid");
-	}
-	}
-public static void emailValidation(String email) {
-//	String emailRegex="^[a-zA-Z]+[a-zA-Z0-9]*[- . + _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?[a-z]+$";
+	return matcher.find();
+	
+}
+
+public static boolean emailValidation(String email) throws CustomException {
 	String emailRegex="^[a-zA-Z0-9]*[- . + _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?$";
 	Pattern pattern=Pattern.compile(emailRegex);
 	Matcher matcher=pattern.matcher(email);
 	if(matcher.find()) {
-		System.out.println("its valid");
+		throw new CustomException("please enter correct email");
 	}
-	else {
-		System.out.println("not valid");
-	}
+	return matcher.find();
 }
-public static void mobileValidation(String mobile) {
+
+public static boolean mobileValidation(String mobile) throws CustomException{
 	String mobileRegex="^(91|0)?[7-9]{1}+[0-9]{9}$";
 	Pattern pattern=Pattern.compile(mobileRegex);
 	Matcher matcher=pattern.matcher(mobile);
-	if(matcher.find()) {
-		System.out.println("its valid ");
+	if(matcher.find()==false) {
+		throw new CustomException("please enter correct mobile number");
+		
 	}
-	else {
-		System.out.println("not valid");
-	}
+	return matcher.find();
 }
-public static void passwordValidationRule1(String password) {
+
+public static boolean passwordValidation(String password) throws CustomException {
 	String passwordRegex="^([A-Za-z0-9]*[//!//@//#//$//%//^//&//*//(//)//_//-//+//=//{//}//[//]//?//>//.//<//,//]*){8}$";
 	Pattern pattern=Pattern.compile(passwordRegex);
 	Matcher matcher=pattern.matcher(password);
-	if(matcher.find()) {
-		System.out.println("its valid");
+	if(matcher.find()==false) {
+		throw new CustomException("please enter correct valid password");
+
 	}
-	else {
-		System.out.println("not valid");
-	}
-}
-public static void passwordValidationRule2(String password) {
-	String regexPassword="[A-Za-z0-9]{8}$";
-	Pattern pattern=Pattern.compile(regexPassword);
-	Matcher matcher=pattern.matcher(password);
-	if(matcher.find()) {
-		System.out.println("its valid");
-	}
-	else {
-		System.out.println("not valid");
-	}
-}
-public static void passwordValidationRule3(String password) {
-	String regexPassword="^(?=.*[A-Z])(?=.*[0-9])([a-zA-Z0-9]*([@#$%^&-+=()])*).{8,}$";
-	Pattern pattern=Pattern.compile(regexPassword);
-	Matcher matcher=pattern.matcher(password);
-	if(matcher.find()) {
-		System.out.println("its valid");
-	}
-	else {
-		System.out.println("not valid");
-	}
-}
-public static void passwordValidationRule4(String password) {
-	String regexPassword="^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$";
-	Pattern pattern=Pattern.compile(regexPassword);
-	Matcher matcher=pattern.matcher(password);
-	if(matcher.find()) {
-		System.out.println("its valid");
-	}
-	else {
-		System.out.println("not valid");
-	}
-}
-public static void main(String[] args) {
-	System.out.println("Welcome to user registration");
-	Scanner sc=new Scanner(System.in);
-	System.out.println("Enter the first name");
-	String firstName = sc.next();
-	User.firstNameValidation(firstName);
-	System.out.println("Enter the last name");
-	String lastName = sc.next();
-    User.lastNameValidation(lastName);
-    System.out.println("Enter your email");
-	String email = sc.next();
-    User.emailValidation(email);
-    System.out.println("Enter your mobile number");
-	String mobile = sc.next();
-    User.mobileValidation(mobile);  
-    System.out.println("Enter your password number");
-	String password = sc.next();
-    User.passwordValidationRule1(password);
-    System.out.println("Enter your password number");
-	String password2 = sc.next();
-    User.passwordValidationRule2(password2);
-    System.out.println("Enter your password number");
-  	String password3 = sc.next();
-    User.passwordValidationRule3(password3);	
-    System.out.println("Enter your password number");
-	String password4 = sc.next();
-    User.passwordValidationRule4(password4);
-    System.out.println("--checking for the valid email--");
-    email = "abc@yahoo.com";
-    emailValidation(email);
-
-    email = "abc-100@yahoo.com";
-    emailValidation(email);
-
-    email = "abc.100@yahoo.com";
-    emailValidation(email);
-
-    email = "abc111@abc.com";
-    emailValidation(email);
-
-    email = "abc-100@abc.net";
-    emailValidation(email);
-
-    email = "abc.100@abc.com.au";
-    emailValidation(email);
-
-    email = "abc@1.com";
-    emailValidation(email);
-
-    email = "abc@gmail.com.com";
-    emailValidation(email);
-
-    email = "abc+100@gmail.com";
-    emailValidation(email);
-    
-    
-    System.out.println("checking for invalid email");
-    
-    
-    email = "abc";
-    emailValidation(email);
-
-    email = "abc@.com.my";
-    emailValidation(email);
-
-    email = "abc123@gmail.a";
-    emailValidation(email);
-
-    email = "abc123@.com";
-    emailValidation(email);
-
-    email = "abc123@.com.com";
-    emailValidation(email);
-
-    email = ".abc@abc.com";
-    emailValidation(email);
-
-    email = "abc()*@gmail.com";
-    emailValidation(email);
-
-    email = "abc@%*.com";
-    emailValidation(email);
-
-    email = "abc..2002@gmail.com";
-    emailValidation(email);
-
-    email = "abc.@gmail.com";
-    emailValidation(email);
-
-    email = "abc@abc@gmail.com";
-    emailValidation(email);
-
-    email = "abc@gmail.com.1a";
-    emailValidation(email);
-
-    email = "abc@gmail.com.aa.au";
-    emailValidation(email);
-
-   sc.close();
+	return matcher.find();
 }
 }
