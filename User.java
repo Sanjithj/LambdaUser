@@ -50,6 +50,18 @@ public static void mobileValidation(String mobile) {
 		System.out.println("not valid");
 	}
 }
+public static void passwordValidationRule1(String password) {
+	String passwordRegex="^([A-Za-z0-9]*[//!//@//#//$//%//^//&//*//(//)//_//-//+//=//{//}//[//]//?//>//.//<//,//]*){8}$";
+	Pattern pattern=Pattern.compile(passwordRegex);
+	Matcher matcher=pattern.matcher(password);
+	if(matcher.find()) {
+		System.out.println("its valid");
+	}
+	else {
+		System.out.println("not valid");
+	}
+}
+
 public static void main(String[] args) {
 	System.out.println("Welcome to user registration");
 	Scanner sc=new Scanner(System.in);
@@ -64,7 +76,10 @@ public static void main(String[] args) {
     User.emailValidation(email);
     System.out.println("Enter your mobile number");
 	String mobile = sc.next();
-    User.mobileValidation(mobile);   
+    User.mobileValidation(mobile);  
+    System.out.println("Enter your password number");
+	String password = sc.next();
+    User.passwordValidationRule1(password);
     sc.close();
 }
 }
