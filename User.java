@@ -61,6 +61,17 @@ public static void passwordValidationRule1(String password) {
 		System.out.println("not valid");
 	}
 }
+public static void passwordValidationRule2(String password) {
+	String regexPassword="[A-Za-z0-9]{8}$";
+	Pattern pattern=Pattern.compile(regexPassword);
+	Matcher matcher=pattern.matcher(password);
+	if(matcher.find()) {
+		System.out.println("its valid");
+	}
+	else {
+		System.out.println("not valid");
+	}
+}
 
 public static void main(String[] args) {
 	System.out.println("Welcome to user registration");
@@ -80,6 +91,10 @@ public static void main(String[] args) {
     System.out.println("Enter your password number");
 	String password = sc.next();
     User.passwordValidationRule1(password);
+    System.out.println("Enter your password number");
+	String password2 = sc.next();
+    User.passwordValidationRule2(password2);
+ 
     sc.close();
 }
 }
