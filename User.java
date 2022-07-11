@@ -29,7 +29,8 @@ public static void lastNameValidation(String name) {
 	}
 	}
 public static void emailValidation(String email) {
-	String emailRegex="^[a-zA-Z]+[a-zA-Z0-9]*[- . + _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?[a-z]+$";
+//	String emailRegex="^[a-zA-Z]+[a-zA-Z0-9]*[- . + _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?[a-z]+$";
+	String emailRegex="^[a-zA-Z0-9]*[- . + _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?$";
 	Pattern pattern=Pattern.compile(emailRegex);
 	Matcher matcher=pattern.matcher(email);
 	if(matcher.find()) {
@@ -121,6 +122,77 @@ public static void main(String[] args) {
     System.out.println("Enter your password number");
 	String password4 = sc.next();
     User.passwordValidationRule4(password4);
-    sc.close();
+    System.out.println("--checking for the valid email--");
+    email = "abc@yahoo.com";
+    emailValidation(email);
+
+    email = "abc-100@yahoo.com";
+    emailValidation(email);
+
+    email = "abc.100@yahoo.com";
+    emailValidation(email);
+
+    email = "abc111@abc.com";
+    emailValidation(email);
+
+    email = "abc-100@abc.net";
+    emailValidation(email);
+
+    email = "abc.100@abc.com.au";
+    emailValidation(email);
+
+    email = "abc@1.com";
+    emailValidation(email);
+
+    email = "abc@gmail.com.com";
+    emailValidation(email);
+
+    email = "abc+100@gmail.com";
+    emailValidation(email);
+    
+    
+    System.out.println("checking for invalid email");
+    
+    
+    email = "abc";
+    emailValidation(email);
+
+    email = "abc@.com.my";
+    emailValidation(email);
+
+    email = "abc123@gmail.a";
+    emailValidation(email);
+
+    email = "abc123@.com";
+    emailValidation(email);
+
+    email = "abc123@.com.com";
+    emailValidation(email);
+
+    email = ".abc@abc.com";
+    emailValidation(email);
+
+    email = "abc()*@gmail.com";
+    emailValidation(email);
+
+    email = "abc@%*.com";
+    emailValidation(email);
+
+    email = "abc..2002@gmail.com";
+    emailValidation(email);
+
+    email = "abc.@gmail.com";
+    emailValidation(email);
+
+    email = "abc@abc@gmail.com";
+    emailValidation(email);
+
+    email = "abc@gmail.com.1a";
+    emailValidation(email);
+
+    email = "abc@gmail.com.aa.au";
+    emailValidation(email);
+
+   sc.close();
 }
 }
