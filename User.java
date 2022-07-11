@@ -39,6 +39,17 @@ public static void emailValidation(String email) {
 		System.out.println("not valid");
 	}
 }
+public static void mobileValidation(String mobile) {
+	String mobileRegex="^(91|0)?[7-9]{1}+[0-9]{9}$";
+	Pattern pattern=Pattern.compile(mobileRegex);
+	Matcher matcher=pattern.matcher(mobile);
+	if(matcher.find()) {
+		System.out.println("its valid ");
+	}
+	else {
+		System.out.println("not valid");
+	}
+}
 public static void main(String[] args) {
 	System.out.println("Welcome to user registration");
 	Scanner sc=new Scanner(System.in);
@@ -51,7 +62,9 @@ public static void main(String[] args) {
     System.out.println("Enter your email");
 	String email = sc.next();
     User.emailValidation(email);
-	    
+    System.out.println("Enter your mobile number");
+	String mobile = sc.next();
+    User.mobileValidation(mobile);   
     sc.close();
 }
 }
