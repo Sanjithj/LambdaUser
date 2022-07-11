@@ -27,9 +27,18 @@ public static void lastNameValidation(String name) {
 	else {
 		System.out.println("its not valid");
 	}
-
-		
 	}
+public static void emailValidation(String email) {
+	String emailRegex="^[a-zA-Z]+[a-zA-Z0-9]*[- . + _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?[a-z]+$";
+	Pattern pattern=Pattern.compile(emailRegex);
+	Matcher matcher=pattern.matcher(email);
+	if(matcher.find()) {
+		System.out.println("its valid");
+	}
+	else {
+		System.out.println("not valid");
+	}
+}
 public static void main(String[] args) {
 	System.out.println("Welcome to user registration");
 	Scanner sc=new Scanner(System.in);
@@ -39,6 +48,10 @@ public static void main(String[] args) {
 	System.out.println("Enter the last name");
 	String lastName = sc.next();
     User.lastNameValidation(lastName);
+    System.out.println("Enter your email");
+	String email = sc.next();
+    User.emailValidation(email);
+	    
     sc.close();
 }
 }
